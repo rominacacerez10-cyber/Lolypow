@@ -22,15 +22,19 @@ jobs:
           unzip -q shorts-lowpoly-skill.zip -d extracted
           PROJECT_DIR=$(find extracted -name "package.json" -exec dirname {} \; | head -n 1)
           echo "PROJECT_PATH=$PROJECT_DIR" >> $GITHUB_ENV
-          echo "Proyecto encontrado en: $PROJECT_DIR"
+          echo "Ruta absoluta del proyecto: $PWD/$PROJECT_DIR"
 
       - name: Instalar dependencias del proyecto
         run: npm install
         working-directory: ${{ env.PROJECT_PATH }}
 
       - name: Renderizar video con Remotion
-        run: npx remotion render src/index.ts Ejemplo out/video.mp4
+        run: npx remotion render src/index.ts Ejemplo ./out/video.mp4 --overwrite
         working-directory: ${{ env.PROJECT_PATH }}
+
+      - name: Verificar archivo generado
+        run: |
+          ls -lh ${{ env.PROJECT_PATH }}/out/video.mp4
 
       - name: Guardar archivo MP4 renderizado
         uses: actions/upload-artifact@v4
