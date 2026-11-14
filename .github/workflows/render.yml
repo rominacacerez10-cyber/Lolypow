@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Renderizar video nativo con Remotion
-        run: npm run render -- --overwrite
+        run: npx remotion render src/index.tsx Ejemplo ./out/video.mp4 --overwrite
 
       - name: Guardar archivo MP4 renderizado
         uses: actions/upload-artifact@v4
