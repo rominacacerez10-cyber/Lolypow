@@ -7,12 +7,9 @@ const videoSchema = z.object({
   subtitle: z.string(),
 });
 
-// Componente con animación geométrica 3D low-poly simulada por CSS/Canvas y tipografía pro
 const LowPolyScene: React.FC<z.infer<typeof videoSchema>> = ({ title, subtitle }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  
-  // Rotación y movimiento dinámico basado en los fotogramas
   const rotation = frame * 1.5;
   const pulse = Math.sin(frame / (fps * 0.5)) * 10;
 
@@ -31,18 +28,12 @@ const LowPolyScene: React.FC<z.infer<typeof videoSchema>> = ({ title, subtitle }
       padding: '50px',
       boxSizing: 'border-box'
     }}>
-      {/* Fondo con retícula y efectos de iluminación low-poly */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        top: 0, left: 0, right: 0, bottom: 0,
         backgroundImage: 'radial-gradient(circle at 50% 30%, #1a1a3a 0%, #030305 70%)',
         zIndex: 1
       }} />
-
-      {/* Elemento gráfico 3D Low-Poly abstracto simulado con CSS transformaciones */}
       <div style={{
         zIndex: 2,
         width: '220px',
@@ -53,8 +44,6 @@ const LowPolyScene: React.FC<z.infer<typeof videoSchema>> = ({ title, subtitle }
         transform: `perspective(800px) rotateY(${rotation}deg) rotateX(20deg) translateY(${pulse}px)`,
         boxShadow: '0 0 50px rgba(0, 255, 204, 0.4)'
       }} />
-
-      {/* Tarjeta de contenido frontal */}
       <div style={{
         zIndex: 2,
         background: 'rgba(15, 15, 25, 0.85)',
@@ -79,16 +68,16 @@ const LowPolyScene: React.FC<z.infer<typeof videoSchema>> = ({ title, subtitle }
           ⚡ Alta Demanda
         </span>
         <h1 style={{
-          fontSize: '64px',
+          fontSize: '68px',
           fontWeight: '900',
-          lineHeight: '1.2',
-          margin: '0 0 30px 0',
+          lineHeight: '1.15',
+          margin: '0 0 35px 0',
           color: '#ffffff'
         }}>
           {title}
         </h1>
         <p style={{
-          fontSize: '36px',
+          fontSize: '38px',
           color: '#a0a0c0',
           margin: '0',
           lineHeight: '1.4'
