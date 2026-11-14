@@ -16,16 +16,22 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Descomprimir la skill automáticamente
+        run: |
+          unzip shorts-lowpoly-skill.zip -d proyecto_extraido
+          # Mover el contenido de la carpeta proyecto al nivel correcto si es necesario
+          cd proyecto_extraido
+
       - name: Instalar dependencias del proyecto
         run: npm install
-        working-directory: ./proyecto
+        working-directory: ./proyecto_extraido/proyecto
 
       - name: Renderizar video con Remotion
         run: npx remotion render src/index.ts MainVideo out/video.mp4
-        working-directory: ./proyecto
+        working-directory: ./proyecto_extraido/proyecto
 
       - name: Guardar archivo MP4 renderizado
         uses: actions/upload-artifact@v4
         with:
           name: short-lowpoly-mp4
-          path: proyecto/out/video.mp4
+          path: proyecto_extraido/proyecto/out/video.mp4
